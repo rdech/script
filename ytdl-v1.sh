@@ -7,14 +7,22 @@
 # -fm or -fv take the link by the file specified as second argument
 
 if [ $1 = -v ]; then
+	echo " --- Your video will be in $HOME/Videos ---"
+	cd ~/Videos
 	youtube-dl -f 'bestvideo+bestaudio' $2
 elif [ $1 = -m ]; then
+	echo " --- Your music will be in $HOME/Music ---"
+	cd ~/Music
 	youtube-dl -f 'bestaudio' -x --audio-quality 0 --audio-format 'mp3' $2
 elif [ $1 = -fm ]; then
+	echo " --- Your musics will be in $HOME/Music ---"
+	cd ~/Music
 	while read a; do
 		youtube-dl -f 'bestaudio' -x --audio-quality 0 --audio-format 'mp3' $a
 	done < $2
 elif [ $1 = -fv ]; then
+	echo " --- Your videos will be in $HOME/Videos ---"
+	cd ~/Videos
 	while read a; do
 		youtube-dl -f 'bestvideo+bestaudio' $a
 	done < $2
@@ -23,4 +31,3 @@ else
 fi
 
 exit 0
-
